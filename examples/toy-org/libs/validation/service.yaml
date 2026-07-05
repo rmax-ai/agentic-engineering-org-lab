@@ -1,0 +1,16 @@
+name: validation
+type: library
+language: python
+owner: team-platform
+risk_level: medium
+dependencies: []
+commands:
+  test: pytest
+  lint: ruff check
+  typecheck: ty check
+entrypoints:
+  - src/validation/email.py
+  - src/validation/strings.py
+policies:
+  - validate_external_input
+  - cross_service_impact_warning

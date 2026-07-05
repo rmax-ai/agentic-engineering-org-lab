@@ -8,6 +8,7 @@ from datetime import datetime, timezone
 
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel, Field, field_validator
+from validation.strings import sanitize_string
 
 app = FastAPI(
     title="Billing API",
@@ -33,6 +34,11 @@ class InvoiceRequest(BaseModel):
     amount: int = Field(..., description="Invoice amount in cents; must be positive")
     description: str = Field(..., min_length=1, description="Line item description")
 
+    @field_validator("customer_id", "description", mode="before")
+    @classmethod
+    def sanitize_fields(cls, v: str) -> str:
+        return sanitize_string(v, max_length=500)
+
     @field_validator("amount")
     @classmethod
     def amount_must_be_positive(cls, v: int) -> int:
@@ -54,6 +60,11 @@ class SubscriptionRequest(BaseModel):
     customer_id: str = Field(..., min_length=1)
     plan: str = Field(..., min_length=1)
     price: int = Field(..., description="Subscription price in cents; must be positive")
+
+    @field_validator("customer_id", "plan", mode="before")
+    @classmethod
+    def sanitize_fields(cls, v: str) -> str:
+        return sanitize_string(v, max_length=500)
 
     @field_validator("plan")
     @classmethod

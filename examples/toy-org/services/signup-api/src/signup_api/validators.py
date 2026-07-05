@@ -1,14 +1,10 @@
-"""Validation utilities for signup-api."""
+"""Validation utilities for signup-api.
 
+Email validation is delegated to the shared validation library.
+Password and name validation are signup-specific.
+"""
 
-def validate_email(email: str) -> bool:
-    """Check email contains @ with a domain part containing a dot."""
-    if "@" not in email:
-        return False
-    local, domain = email.rsplit("@", 1)
-    if not local or "." not in domain:
-        return False
-    return True
+from validation.email import validate_email  # noqa: F401 — re-exported
 
 
 def validate_password(password: str) -> bool:
