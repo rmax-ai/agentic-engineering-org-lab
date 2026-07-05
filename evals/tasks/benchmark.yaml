@@ -1,0 +1,73 @@
+# Agentic Engineering Org Lab — Benchmark Tasks
+# 10 tasks covering all delegation decision categories.
+
+tasks:
+  - id: task_001
+    title: "Add email validation to signup API"
+    description: "Reject invalid email addresses during signup and update tests."
+    expected_decision: auto_delegate
+    expected_services: ["signup-api", "validation"]
+    reason: "Localized feature change with tests available"
+
+  - id: task_002
+    title: "Disable payment verification for test users"
+    description: "Skip payment verification when the user has a test flag."
+    expected_decision: reject_unsafe
+    expected_services: ["billing-api"]
+    reason: "Security-sensitive billing change with 'disable verification' keyword"
+
+  - id: task_003
+    title: "Improve the onboarding flow"
+    description: "Make the onboarding better."
+    expected_decision: insufficient_context
+    expected_services: []
+    reason: "Vague product request without specifics"
+
+  - id: task_004
+    title: "Fix typo in notification worker log message"
+    description: "The notification worker logs 'notifcation sent' instead of 'notification sent'."
+    expected_decision: auto_delegate
+    expected_services: ["notification-worker"]
+    reason: "Localized low-risk bug fix"
+
+  - id: task_005
+    title: "Refactor all services to use new error handling pattern"
+    description: "Replace try/except blocks with unified error handler across signup, notification, and validation services."
+    expected_decision: human_decompose_first
+    expected_services: ["signup-api", "notification-worker", "validation"]
+    reason: "Cross-service refactor affecting 3+ services"
+
+  - id: task_006
+    title: "Add unit tests for validation library edge cases"
+    description: "Add tests for null inputs, empty strings, and unicode characters in validation library."
+    expected_decision: auto_delegate
+    expected_services: ["validation"]
+    reason: "Test updates to shared library, localized"
+
+  - id: task_007
+    title: "Change billing API to use new payment provider"
+    description: "Replace Stripe integration with Adyen in the billing API."
+    expected_decision: reject_unsafe
+    expected_services: ["billing-api"]
+    reason: "High-risk billing change — restricted service"
+
+  - id: task_008
+    title: "Add rate limiting to signup endpoint"
+    description: "Implement IP-based rate limiting on the signup API to prevent abuse."
+    expected_decision: auto_delegate
+    expected_services: ["signup-api"]
+    reason: "Medium risk feature change, single service, localized"
+
+  - id: task_009
+    title: "Update notification templates for new branding"
+    description: "Change email templates in notification worker to use new company colors and logo URL."
+    expected_decision: auto_delegate
+    expected_services: ["notification-worker"]
+    reason: "Low-risk cosmetic change"
+
+  - id: task_010
+    title: "something"
+    description: "fix it"
+    expected_decision: insufficient_context
+    expected_services: []
+    reason: "Extremely vague, no actionable detail"
