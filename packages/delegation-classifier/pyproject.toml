@@ -1,0 +1,38 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "delegation-classifier"
+version = "0.1.0"
+description = "Delegation Classifier — policy-driven safety decisions for agent delegation"
+requires-python = ">=3.12"
+dependencies = [
+    "pydantic>=2.0.0",
+    "pyyaml>=6.0",
+    "task-intake",
+    "world-model",
+    "repo-readiness",
+]
+
+[tool.uv.sources]
+task-intake = { path = "../task-intake", editable = true }
+world-model = { path = "../world-model", editable = true }
+repo-readiness = { path = "../repo-readiness", editable = true }
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0.0",
+    "ruff>=0.6.0",
+]
+
+[tool.ruff]
+target-version = "py312"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "N", "W"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
