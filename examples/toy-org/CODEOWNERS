@@ -1,0 +1,7 @@
+# ToyOrg CODEOWNERS
+# Auto-generated from docs/ownership.md
+
+services/signup-api/**     @team-growth
+services/billing-api/**    @team-payments
+services/notification-worker/** @team-platform
+libs/validation/**         @team-platform

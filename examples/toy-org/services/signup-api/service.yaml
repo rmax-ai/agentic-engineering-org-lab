@@ -1,0 +1,15 @@
+name: signup-api
+type: service
+language: python
+owner: team-growth
+risk_level: medium
+dependencies:
+  - validation
+commands:
+  test: pytest
+  lint: ruff check
+  typecheck: ty check
+entrypoints:
+  - src/signup_api/app.py
+policies:
+  - validate_external_input

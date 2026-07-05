@@ -1,0 +1,17 @@
+name: billing-api
+type: service
+language: python
+owner: team-payments
+risk_level: high
+dependencies:
+  - validation
+commands:
+  test: pytest
+  lint: ruff check
+  typecheck: ty check
+entrypoints:
+  - src/billing_api/app.py
+policies:
+  - no_plaintext_payments
+  - require_audit_log
+  - restrict_to_authorized_teams

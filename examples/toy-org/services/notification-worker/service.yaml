@@ -1,0 +1,17 @@
+name: notification-worker
+type: service
+language: python
+owner: team-platform
+risk_level: low
+dependencies:
+  - signup-api
+  - billing-api
+commands:
+  test: pytest
+  lint: ruff check
+  typecheck: ty check
+entrypoints:
+  - src/notification_worker/worker.py
+policies:
+  - rate_limit_notifications
+  - retry_on_failure
