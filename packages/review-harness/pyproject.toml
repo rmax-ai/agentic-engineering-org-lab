@@ -1,0 +1,23 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "review-harness"
+version = "0.1.0"
+description = "AI Review Harness — structured review of agent-generated patches"
+requires-python = ">=3.12"
+dependencies = [
+    "pydantic>=2.0.0",
+    "task-intake",
+    "agent-adapters",
+    "verification-harness",
+]
+
+[tool.uv.sources]
+task-intake = { path = "../task-intake", editable = true }
+agent-adapters = { path = "../agent-adapters", editable = true }
+verification-harness = { path = "../verification-harness", editable = true }
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0.0", "ruff>=0.6.0"]
