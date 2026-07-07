@@ -27,6 +27,7 @@ Following Gemini 3 Pro's control-plane dashboard guidelines:
 
 The `src/`, `svelte.config.js`, `vite.config.ts`, `tsconfig.json`, and `package.json`
 files contain SvelteKit 5 + Tailwind v4 source for the dashboard components.
-These are **reference implementations** — the build pipeline hangs on adapter-static
-in this environment. Use `index.html` for the deliverable; the SvelteKit source
-demonstrates the component architecture.
+These are **reference implementations** — the SvelteKit build succeeds (~5s)
+and produces a `build/` directory with adapter-static output. Use `index.html`
+for the zero-dependency deliverable; the SvelteKit source demonstrates the
+component architecture.

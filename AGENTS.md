@@ -60,10 +60,10 @@ agentic-engineering-org-lab/
 
 ### TypeScript (apps/web-dashboard/)
 
-- Next.js 15 App Router
+- SvelteKit 5 with adapter-static
 - TypeScript strict mode
-- `shadcn/ui` components (avoid reinventing UI primitives)
-- Server Components by default, Client Components only when needed
+- Tailwind CSS v4 for styling
+- Standalone HTML deliverable (`index.html`) with zero external dependencies
 - API calls to backend use `fetch` with typed response handling
 
 ### Supporting Files
@@ -87,7 +87,7 @@ agentic-engineering-org-lab/
   Use fixtures for the toy org. Mock Docker for sandbox tests. Mock LLM calls
   with deterministic responses.
 - **TypeScript:** `vitest` for the dashboard. Component tests with
-  `@testing-library/react`.
+  `@testing-library/svelte`.
 - **Evals:** `evals/` directory contains task fixtures, expected outcomes, and
   rubrics. Run evals as integration tests against the full pipeline.
 - **Coverage target:** 80%+ for classification and verification modules (the
@@ -98,7 +98,7 @@ agentic-engineering-org-lab/
 - Architecture decisions go in `docs/design-decisions/` as dated ADRs
 - Module-level README.md in each `packages/<name>/`
 - API routes documented with FastAPI's OpenAPI auto-docs
-- Demo script in `docs/demo-script.md`
+- Demo script in `docs/demo-script.md` (planned)
 - ROADMAP.md tracks phase completion
 
 ## 7. Performance
@@ -113,12 +113,12 @@ agentic-engineering-org-lab/
 - Pin all versions in `pyproject.toml` (no `>=` without upper bound)
 - Audit new dependencies: does it pull in a tree of transitive deps?
 - Prefer stdlib where possible (pathlib over os.path, dataclasses if Pydantic is overkill)
-- For the dashboard: prefer shadcn/ui components over new npm packages
+- For the dashboard: prefer SvelteKit built-ins and Tailwind over new npm packages
 
 ## 9. Formatting and Linting
 
 - **Python:** `ruff` for format + lint, `ty` for type checking
-- **TypeScript:** `prettier` + `eslint`, `tsc --noEmit` for type checking
+- **TypeScript:** `prettier` + `eslint`, `svelte-check` for type checking
 - CI gate: `ruff format --check && ruff check && ty check src/ && pytest`
 
 ## 10. CI/CD
